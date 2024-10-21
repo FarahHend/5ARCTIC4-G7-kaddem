@@ -3,6 +3,7 @@ package tn.esprit.spring.kaddem.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -22,6 +23,16 @@ public class Equipe implements Serializable{
     private Set<Etudiant> etudiants;
     @OneToOne
     private DetailEquipe detailEquipe;
+
+    @ManyToMany
+    @JoinTable(
+            name = "equipe_projet",
+            joinColumns = @JoinColumn(name = "id_equipe"),
+            inverseJoinColumns = @JoinColumn(name = "id_projet")
+    )
+    private Set<Projet> projets;
+
+
 
     public Equipe() {
         // TODO Auto-generated constructor stub
@@ -59,6 +70,15 @@ public class Equipe implements Serializable{
         this.detailEquipe = detailEquipe;
     }
 
+    public Set<Projet> getProjets() {
+        return projets;
+    }
+
+
+    public void setProjets(Set<Projet> projets) {
+        this.projets = projets;
+    }
+
     public Set<Etudiant> getEtudiants() {
         return etudiants;
     }
@@ -93,5 +113,6 @@ public class Equipe implements Serializable{
     public void setNiveau(Niveau niveau) {
         this.niveau = niveau;
     }
+
 
 }

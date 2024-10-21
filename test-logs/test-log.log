@@ -1,0 +1,12 @@
+2024-10-22 00:23:49.286  INFO 8680 --- [main] t.e.spring.kaddem.KaddemApplication      : Starting KaddemApplication using Java 17.0.9 on Hend with PID 8680 (C:\Users\hend8\Desktop\kaddem\target\classes started by hend8 in C:\Users\hend8\Desktop\kaddem)
+2024-10-22 00:23:49.288  INFO 8680 --- [main] t.e.spring.kaddem.KaddemApplication      : No active profile set, falling back to 1 default profile: "default"
+2024-10-22 00:23:50.003  INFO 8680 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-22 00:23:50.004  INFO 8680 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2024-10-22 00:23:50.073  INFO 8680 --- [main] o.a.c.c.C.[.[localhost].[/kaddem]        : Initializing Spring embedded WebApplicationContext
+2024-10-22 00:23:50.177  INFO 8680 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-22 00:23:50.203  INFO 8680 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2024-10-22 00:23:50.290  INFO 8680 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-10-22 00:23:50.437  INFO 8680 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2024-10-22 00:23:51.027  INFO 8680 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-10-22 00:23:51.385  WARN 8680 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-22 00:23:51.775  INFO 8680 --- [main] t.e.spring.kaddem.KaddemApplication      : Started KaddemApplication in 2.732 seconds (JVM running for 3.088)

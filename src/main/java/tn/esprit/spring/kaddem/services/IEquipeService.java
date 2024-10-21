@@ -11,4 +11,5 @@ public interface IEquipeService {
     public Equipe updateEquipe(Equipe e);
     public Equipe retrieveEquipe(Integer equipeId);
     public void evoluerEquipes();
+    public double calculerEfficaciteEquipe(Integer idEquipe);
 }

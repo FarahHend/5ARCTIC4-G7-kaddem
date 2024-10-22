@@ -1,0 +1,13 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: EquipeMicroservice
+
+logging:
+  file:
+    name: C:/Users/hend8/Desktop/kaddem/microservices/EquipeMicroservice/test-logs/test-log.log
+  level:
+    root: INFO
+    org.springframework: WARN
+    com.zaxxer.hikari: WARN

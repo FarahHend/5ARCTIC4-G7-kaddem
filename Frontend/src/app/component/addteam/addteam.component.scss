@@ -1,0 +1,25 @@
+// Add these styles to your component's SCSS file (addteam.component.scss)
+
+:host {
+    display: flex;
+    justify-content: center; // Center horizontally
+    align-items: center; // Center vertically
+    height: 100vh; // Full height of the viewport
+  }
+  
+  .team-form {
+    display: flex;
+    flex-direction: column; // Stack form fields vertically
+    gap: 16px; // Space between form fields
+    max-width: 400px; // Limit the width of the form
+    width: 100%; // Make form responsive
+  
+    mat-form-field {
+      width: 100%; // Full width for form fields
+    }
+  
+    button {
+      align-self: flex-end; // Align the button to the right
+    }
+  }
+  

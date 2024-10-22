@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Liste des Équipes</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom de l'Équipe</th>
+                <th>Niveau</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let equipe of equipes">
+                <td>{{ equipe.idEquipe }}</td>
+                <td>{{ equipe.nomEquipe }}</td>
+                <td>{{ equipe.niveau }}</td>
+                <td>
+                    <button (click)="updateEquipe(equipe)" class="btn btn-warning">Modifier</button>
+                    <button (click)="deleteEquipe(equipe.idEquipe)" class="btn btn-danger">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

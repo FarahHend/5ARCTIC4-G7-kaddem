@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h5 class="modal-title">Modifier Équipe</h5>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<form [formGroup]="equipeForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="nomEquipe">Nom de l'Équipe</label>
+            <input id="nomEquipe" class="form-control" formControlName="nomEquipe" required>
+        </div>
+        <div class="form-group">
+            <label for="niveau">Niveau</label>
+            <select id="niveau" class="form-control" formControlName="niveau" required>
+                <option value="JUNIOR">JUNIOR</option>
+                <option value="SENIOR">SENIOR</option>
+                <option value="EXPERT">EXPERT</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </div>
+</form>

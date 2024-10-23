@@ -17,8 +17,8 @@ export class EquipeService {
     return this.http.get<Equipe[]>(`${this.baseUrl}/retrieve-all-equipes`);
   }
 
-  getEquipe( idEquipe: number): Observable<Equipe> {
-    return this.http.get<Equipe>(`${this.baseUrl}/retrieve-equipe/${ idEquipe}`);
+  getEquipe(idEquipe: number): Observable<Equipe> {
+    return this.http.get<Equipe>(`${this.baseUrl}/retrieve-equipe/${idEquipe}`);
   }
 
   addEquipe(equipe: Equipe): Observable<Equipe> {
@@ -27,9 +27,14 @@ export class EquipeService {
 
   updateEquipe(idEquipe: number, equipe: Equipe): Observable<Equipe> {
     return this.http.put<Equipe>(`${this.baseUrl}/update-equipe/${idEquipe}`, equipe);
-}
+  }
 
   deleteEquipe(idEquipe: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/remove-equipe/${idEquipe}`);
+  }
+
+  // New method to calculate the efficiency of a team
+  calculerEfficacite(idEquipe: number): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/efficacite/${idEquipe}`);
   }
 }

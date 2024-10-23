@@ -1,1 +1,51 @@
-<p>addprojet works!</p>
+<div class="add-projet-container">
+    <h2>Add New Project</h2>
+    <form [formGroup]="projetForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="nomProjet">Project Name</label>
+        <input id="nomProjet" formControlName="nomProjet" type="text" placeholder="Enter project name" />
+        <div *ngIf="projetForm.controls['nomProjet'].invalid && projetForm.controls['nomProjet'].touched" class="error">
+          Project name is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="budget">Budget</label>
+        <input id="budget" formControlName="budget" type="number" placeholder="Enter budget" />
+        <div *ngIf="projetForm.controls['budget'].invalid && projetForm.controls['budget'].touched" class="error">
+          Budget must be a positive number
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="deadline">Deadline</label>
+        <input id="deadline" formControlName="deadline" type="date" />
+        <div *ngIf="projetForm.controls['deadline'].invalid && projetForm.controls['deadline'].touched" class="error">
+          Deadline is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="status">Project Status</label>
+        <select id="status" formControlName="status">
+          <option *ngFor="let status of projectStatuses" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="budgetDepasse">
+          <input id="budgetDepasse" formControlName="budgetDepasse" type="checkbox" /> Budget Exceeded
+        </label>
+      </div>
+  
+      <div class="form-group">
+        <label for="enRetard">
+          <input id="enRetard" formControlName="enRetard" type="checkbox" /> Delayed
+        </label>
+      </div>
+  
+      <button type="submit" [disabled]="projetForm.invalid">Submit</button>
+    </form>
+  </div>
+  

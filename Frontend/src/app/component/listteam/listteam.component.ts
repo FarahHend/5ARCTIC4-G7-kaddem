@@ -3,8 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Equipe } from '../../model/Equipe';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
-import { EquipeModalComponent } from '../equipe-modal/equipe-modal.component'; // Import your modal component
+import { MatDialog } from '@angular/material/dialog';
+import { EquipeModalComponent } from '../equipe-modal/equipe-modal.component';
+import { EquipeefficaciteComponent } from '../equipeefficacite/equipeefficacite.component'; 
+import { EquipeService } from '../../service/equipe.service';
 
 @Component({
     selector: 'app-listteam',
@@ -19,7 +21,7 @@ export class EquipeListComponent implements OnInit {
     private deleteUrl = 'http://localhost:8050/equipe/remove-equipe';
     private updateUrl = 'http://localhost:8050/equipe/update-equipe';
 
-    constructor(private http: HttpClient, private router: Router, private dialog: MatDialog) {}
+    constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private equipeService: EquipeService) {}
 
     ngOnInit(): void {
         this.loadEquipes();
@@ -54,7 +56,6 @@ export class EquipeListComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                // Call your update API here with the result
                 this.http.put<void>(`${this.updateUrl}/${equipe.idEquipe}`, result).subscribe({
                     next: () => {
                         this.loadEquipes(); // Refresh the list after updating
@@ -63,6 +64,22 @@ export class EquipeListComponent implements OnInit {
                         console.error('Error updating equipe:', err);
                     }
                 });
+            }
+        });
+    }
+
+    // New method to calculate efficiency
+    calculerEfficacite(idEquipe: number): void {
+        this.equipeService.calculerEfficacite(idEquipe).subscribe({
+            next: (efficacite) => {
+                const dialogRef = this.dialog.open(EquipeefficaciteComponent, {
+                    data: { idEquipe, efficacite },
+                });
+                
+                dialogRef.afterClosed().subscribe();
+            },
+            error: (err) => {
+                console.error('Error calculating efficiency:', err);
             }
         });
     }

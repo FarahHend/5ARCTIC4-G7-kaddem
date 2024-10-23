@@ -1,1 +1,32 @@
-<p>listprojet works!</p>
+<div class="container">
+    <h2>Liste des Projets</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom du Projet</th>
+                <th>Budget</th>
+                <th>Date Limite</th>
+                <th>Status</th>
+                <th>Budget Dépassé</th>
+                <th>En Retard</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let projet of projets">
+                <td>{{ projet.idProjet }}</td>
+                <td>{{ projet.nomProjet }}</td>
+                <td>{{ projet.budget }}</td>
+                <td>{{ projet.deadline }}</td>
+                <td>{{ projet.status }}</td>
+                <td>{{ projet.budgetDepasse ? 'Oui' : 'Non' }}</td>
+                <td>{{ projet.enRetard ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <button (click)="updateProjet(projet)" class="btn btn-warning">Modifier</button>
+                    <button (click)="deleteProjet(projet.idProjet)" class="btn btn-danger">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

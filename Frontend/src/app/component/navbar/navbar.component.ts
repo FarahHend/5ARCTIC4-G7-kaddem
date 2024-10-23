@@ -17,6 +17,7 @@ export class NavbarComponent {
   }
 
   goToProject(): void {
-    this.router.navigate(['/projet']); 
+    this.router.navigate(['/addprojet']); 
   }
+
 }

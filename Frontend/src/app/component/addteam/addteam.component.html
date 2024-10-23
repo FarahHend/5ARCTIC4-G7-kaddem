@@ -1,24 +1,28 @@
-<div class="team-form">
-    <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
-      <mat-form-field>
-        <mat-label>Nom Équipe</mat-label>
-        <input matInput formControlName="nomEquipe" />
-        <mat-error *ngIf="teamForm.get('nomEquipe')?.invalid && teamForm.get('nomEquipe')?.touched">
-          Nom Équipe est requis.
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>Niveau</mat-label>
-        <mat-select formControlName="niveau">
-          <mat-option *ngFor="let niveau of niveaux" [value]="niveau">{{ niveau }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="teamForm.get('niveau')?.invalid && teamForm.get('niveau')?.touched">
-          Niveau est requis.
-        </mat-error>
-      </mat-form-field>
-  
-      <button mat-raised-button type="submit" [disabled]="teamForm.invalid" color="primary">Ajouter Équipe</button>
-    </form>
-  </div>
-  
+<div class="add-team-container">
+  <h2>Add New Team</h2>
+  <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+
+    <!-- Team Name Field -->
+    <div class="form-group">
+      <label for="nomEquipe">Team Name</label>
+      <input id="nomEquipe" formControlName="nomEquipe" type="text" placeholder="Enter team name" />
+      <div *ngIf="teamForm.get('nomEquipe')?.invalid && teamForm.get('nomEquipe')?.touched" class="error">
+        Team name is required
+      </div>
+    </div>
+
+    <!-- Team Level Field -->
+    <div class="form-group">
+      <label for="niveau">Level</label>
+      <select id="niveau" formControlName="niveau">
+        <option *ngFor="let niveau of niveaux" [value]="niveau">{{ niveau }}</option>
+      </select>
+      <div *ngIf="teamForm.get('niveau')?.invalid && teamForm.get('niveau')?.touched" class="error">
+        Level is required
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="teamForm.invalid">Submit</button>
+  </form>
+</div>

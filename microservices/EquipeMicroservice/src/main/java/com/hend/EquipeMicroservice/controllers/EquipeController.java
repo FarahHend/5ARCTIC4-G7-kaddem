@@ -4,6 +4,8 @@ import com.hend.EquipeMicroservice.entities.Equipe;
 import com.hend.EquipeMicroservice.services.IEquipeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +54,16 @@ public class EquipeController {
     //public void faireEvoluerEquipes() {
         //equipeService.evoluerEquipes() ;
    // }
+
+    @GetMapping("/efficacite/{idEquipe}")
+    public ResponseEntity<Double> calculerEfficacite(@PathVariable Integer idEquipe) {
+        try {
+            double efficacite = equipeService.calculerEfficaciteEquipe(idEquipe);
+            return new ResponseEntity<>(efficacite, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
 }
 
 

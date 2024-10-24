@@ -109,6 +109,16 @@ services:
       - microservices-net
     volumes:
       - frontend_data:/app/data # Adjust this path based on your needs
+    depends_on:
+      - eureka
+
+  eureka:
+    image: steeltoeoss/eureka-server
+    container_name: eureka_server
+    ports:
+      - 8761:8761
+    networks:
+      - microservices-net
 
   projetmicroservie:
     image: projetmicroservieimage
@@ -119,6 +129,8 @@ services:
       - microservices-net
     volumes:
       - projetmicroservie_data:/data # Adjust this path based on your needs
+    depends_on:
+      - eureka
 
   equipemicroservie:
     image: equipemicroservieimage
@@ -129,6 +141,8 @@ services:
       - microservices-net
     volumes:
       - equipemicroservie_data:/data # Adjust this path based on your needs
+    depends_on:
+      - eureka
 
 networks:
   microservices-net:

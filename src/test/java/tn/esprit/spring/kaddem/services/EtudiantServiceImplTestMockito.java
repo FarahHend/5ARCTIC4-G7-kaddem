@@ -130,14 +130,5 @@ class EtudiantServiceImplTestMockito {
         verify(equipeRepository, times(1)).findById(1);
     }
 
-    @Test
-    void getEtudiantsByDepartement() {
-        List<Etudiant> etudiants = new ArrayList<>();
-        when(etudiantRepository.findEtudiantsByDepartement_IdDepart(1)).thenReturn(etudiants);
 
-        List<Etudiant> result = etudiantService.getEtudiantsByDepartement(1);
-
-        assertEquals(etudiants, result);
-        verify(etudiantRepository, times(1)).findEtudiantsByDepartement_IdDepart(1);
-    }
 }

@@ -61,11 +61,7 @@ public class EtudiantRestController {
         return etudiant;
     }
 
-	@GetMapping(value = "/getEtudiantsByDepartement/{idDepartement}")
-	public List<Etudiant> getEtudiantsParDepartement(@PathVariable("idDepartement") Integer idDepartement) {
 
-		return etudiantService.getEtudiantsByDepartement(idDepartement);
-	}
 
 }
 

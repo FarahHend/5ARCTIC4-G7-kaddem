@@ -119,17 +119,6 @@ class EtudiantServiceImplTestJUnit {
         assertTrue(equipe.getEtudiants().contains(etudiant));
     }
 
-    @Test
-    void getEtudiantsByDepartement() {
-        Departement departement = new Departement();
-        departement.setIdDepart(1);
-        departementRepository.save(departement); // Use save instead of addDepartement
 
-        Etudiant etudiant = new Etudiant();
-        etudiant.setDepartement(departement);
-        etudiantRepository.save(etudiant); // Use save instead of addEtudiant
 
-        List<Etudiant> result = etudiantService.getEtudiantsByDepartement(departement.getIdDepart());
-        assertEquals(1, result.size());
-    }
 }

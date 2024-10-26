@@ -11,6 +11,8 @@ import java.util.Optional;
 public class DepartementRepositoryStub implements DepartementRepository {
     private final Map<Integer, Departement> database = new HashMap<>();
     private int currentId = 1;
+    private final List<Departement> departements = new ArrayList<>();
+
 
     @Override
     public List<Departement> findAll() {
@@ -47,9 +49,10 @@ public class DepartementRepositoryStub implements DepartementRepository {
     }
 
     @Override
-    public Optional<Departement> findById(Integer id) {
-        return Optional.ofNullable(database.get(id));
+    public Optional<Departement> findById(Integer integer) {
+        return Optional.empty();
     }
+
 
     @Override
     public boolean existsById(Integer integer) {

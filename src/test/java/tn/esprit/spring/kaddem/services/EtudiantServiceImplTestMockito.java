@@ -99,18 +99,7 @@ class EtudiantServiceImplTestMockito {
         verify(etudiantRepository, times(1)).delete(etudiant);
     }
 
-    @Test
-    void assignEtudiantToDepartement() {
-        Etudiant etudiant = new Etudiant();
-        Departement departement = new Departement();
-        when(etudiantRepository.findById(1)).thenReturn(Optional.of(etudiant));
-        when(departementRepository.findById(1)).thenReturn(Optional.of(departement));
 
-        etudiantService.assignEtudiantToDepartement(1, 1);
-
-        assertEquals(departement, etudiant.getDepartement());
-        verify(etudiantRepository, times(1)).save(etudiant);
-    }
 
     @Test
     void addAndAssignEtudiantToEquipeAndContract() {

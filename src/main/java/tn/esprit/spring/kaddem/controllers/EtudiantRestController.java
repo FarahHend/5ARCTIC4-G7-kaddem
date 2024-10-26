@@ -48,10 +48,10 @@ public class EtudiantRestController {
 	}
 
 	//@PutMapping("/affecter-etudiant-departement")
-	@PutMapping(value="/affecter-etudiant-departement/{etudiantId}/{departementId}")
+	/*@PutMapping(value="/affecter-etudiant-departement/{etudiantId}/{departementId}")
 	public void affecterEtudiantToDepartement(@PathVariable("etudiantId") Integer etudiantId, @PathVariable("departementId")Integer departementId){
 		etudiantService.assignEtudiantToDepartement(etudiantId, departementId);
-    }
+    }*/
 //addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe)
     /* Ajouter un étudiant tout en lui affectant un contrat et une équipe */
     @PostMapping("/add-assign-Etudiant/{idContrat}/{idEquipe}")

@@ -89,18 +89,7 @@ class EtudiantServiceImplTestJUnit {
         assertThrows(Exception.class, () -> etudiantService.retrieveEtudiant(1));
     }
 
-    @Test
-    void assignEtudiantToDepartement() {
-        Etudiant etudiant = new Etudiant();
-        Departement departement = new Departement();
-        departement.setIdDepart(2);
-        departementRepository.save(departement); // Use save instead of addDepartement
 
-        etudiantRepository.save(etudiant); // Use save instead of addEtudiant
-        etudiantService.assignEtudiantToDepartement(etudiant.getIdEtudiant(), departement.getIdDepart());
-
-        assertEquals(departement, etudiant.getDepartement());
-    }
 
     @Test
     void addAndAssignEtudiantToEquipeAndContract() {

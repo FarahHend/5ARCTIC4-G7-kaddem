@@ -8,6 +8,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class DepartementServiceImplTest {
     @Mock
     private DepartementRepository departementRepository;
@@ -36,5 +40,16 @@ public class DepartementServiceImplTest {
         assertNotNull(result, "Le résultat ne doit pas être null");
         assertEquals("Informatique", result.getNomDepart(), "Le nom du département doit être 'Informatique'");
         verify(departementRepository, times(1)).save(departement);
+    }
+
+    @Test
+    void testRetrieveAllDepartments() {
+        List<Departement> departements = Arrays.asList(new Departement("Informatique"), new Departement("Mathématiques"));
+        when(departementRepository.findAll()).thenReturn(departements);
+
+        List<Departement> result = departementService.retrieveAllDepartements();
+
+        assertEquals(2, result.size());
+        verify(departementRepository, times(1)).findAll();
     }
 }

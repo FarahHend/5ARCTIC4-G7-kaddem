@@ -21,5 +21,10 @@ public interface IUniversiteService {
 
     public Set<Departement> retrieveDepartementsByUniversite(Integer idUniversite);
 
+    //NEW
+    int countDepartementsInUniversite(Integer idUniversite);
 
+    List<Departement> retrieveAllDepartements();
+
+    void deleteAllDepartementsFromUniversite(Integer idUniversite);
 }

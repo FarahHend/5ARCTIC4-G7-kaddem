@@ -19,22 +19,23 @@ public class UniversiteServiceImpl implements IUniversiteService{
     public UniversiteServiceImpl() {
         // TODO Auto-generated constructor stub
     }
-  public   List<Universite> retrieveAllUniversites(){
+    public   List<Universite> retrieveAllUniversites(){
 return (List<Universite>) universiteRepository.findAll();
     }
 
- public    Universite addUniversite (Universite  u){
-return  (universiteRepository.save(u));
+    public    Universite addUniversite (Universite  u){
+    return  (universiteRepository.save(u));
     }
 
- public    Universite updateUniversite (Universite  u){
+    public    Universite updateUniversite (Universite  u){
      return  (universiteRepository.save(u));
     }
 
-  public Universite retrieveUniversite (Integer idUniversite){
-Universite u = universiteRepository.findById(idUniversite).get();
-return  u;
+    public Universite retrieveUniversite (Integer idUniversite){
+        Universite u = universiteRepository.findById(idUniversite).get();
+        return  u;
     }
+
     public  void deleteUniversite(Integer idUniversite){
         universiteRepository.delete(retrieveUniversite(idUniversite));
     }
@@ -47,7 +48,25 @@ return  u;
     }
 
     public Set<Departement> retrieveDepartementsByUniversite(Integer idUniversite){
-Universite u=universiteRepository.findById(idUniversite).orElse(null);
-return u.getDepartements();
+        Universite u=universiteRepository.findById(idUniversite).orElse(null);
+        return u.getDepartements();
     }
+    //NEW
+    public int countDepartementsInUniversite(Integer idUniversite) {
+        Universite u = universiteRepository.findById(idUniversite).orElse(null);
+        return u != null ? u.getDepartements().size() : 0;
+    }
+
+    public List<Departement> retrieveAllDepartements() {
+        return (List<Departement>) departementRepository.findAll();
+    }
+
+    public void deleteAllDepartementsFromUniversite(Integer idUniversite) {
+        Universite u = universiteRepository.findById(idUniversite).orElse(null);
+        if (u != null) {
+            u.getDepartements().clear();
+            universiteRepository.save(u);
+        }
+    }
+
 }

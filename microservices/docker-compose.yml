@@ -144,6 +144,29 @@ services:
     depends_on:
       - eureka
 
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - microservices-net
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    networks:
+      - microservices-net
+
 networks:
   microservices-net:
     driver: bridge
@@ -159,3 +182,4 @@ volumes:
   frontend_data: # Add a volume for frontend
   projetmicroservie_data: # Add a volume for projetmicroservie
   equipemicroservie_data: # Add a volume for equipemicroservie
+

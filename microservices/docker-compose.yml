@@ -167,6 +167,14 @@ services:
     networks:
       - microservices-net
 
+  config-server:
+    image: config-server  # Use your custom built image here
+    container_name: config_server
+    ports:
+      - 8887:8887
+    networks:
+      - microservices-net
+
 networks:
   microservices-net:
     driver: bridge
@@ -182,4 +190,3 @@ volumes:
   frontend_data: # Add a volume for frontend
   projetmicroservie_data: # Add a volume for projetmicroservie
   equipemicroservie_data: # Add a volume for equipemicroservie
-

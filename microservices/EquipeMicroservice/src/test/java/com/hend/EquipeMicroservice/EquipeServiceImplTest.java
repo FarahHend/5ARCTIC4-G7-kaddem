@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
-@TestPropertySource(properties = "application.config.projet-url=http://localhost:8222")
+@TestPropertySource(properties = "application.config.projet-url=http://http://192.168.33.10:8222")
 class EquipeServiceImplTest {
 
     @InjectMocks

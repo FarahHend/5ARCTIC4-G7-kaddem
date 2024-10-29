@@ -5,11 +5,11 @@ spring:
     mongodb:
       username: hend
       password: hend
-      host: localhost
+      host: 192.168.33.10
       port: 27017
       database: ProjetDB
       authentication-database: admin
 
 application:
   config:
-    equipe-url: http://localhost:8222/equipe
+    equipe-url: http://http://192.168.33.10:8222/equipe

@@ -8,9 +8,9 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh 'chmod +x mvnw'
+                sh 'chmod +x backend/mvnw'
 
-                sh './mvnw compile'
+                sh './backend/mvnw compile'
             }
         }
     }

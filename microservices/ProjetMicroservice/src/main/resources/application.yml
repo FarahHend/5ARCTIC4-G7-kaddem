@@ -4,6 +4,10 @@ spring:
   application:
     name: ProjetMicroservice
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.33.10:8761
 logging:
   level:
     feign:

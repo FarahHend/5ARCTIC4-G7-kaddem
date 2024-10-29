@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage('Git') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Compile') {
+            steps {
+                sh 'chmod +x mvnw'
+
+                sh './mvnw compile'
+            }
+        }
+    }
+}

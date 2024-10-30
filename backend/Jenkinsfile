@@ -14,5 +14,14 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                dir('backend') {
+                    withSonarQubeEnv('SonarQube-Serveur') {
+                        sh './mvnw sonar:sonar'
+                    }
+                }
+            }
+        }
     }
 }

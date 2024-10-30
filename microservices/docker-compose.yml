@@ -108,7 +108,7 @@ services:
     networks:
       - microservices-net
     volumes:
-      - frontend_data:/app/data # Adjust this path based on your needs
+      - frontend_data:/app/data
     depends_on:
       - eureka
 
@@ -168,7 +168,7 @@ services:
       - microservices-net
 
   config-server:
-    image: config-server  # Use your custom built image here
+    image: config-server
     container_name: config_server
     ports:
       - 8887:8887

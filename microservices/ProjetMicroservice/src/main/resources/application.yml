@@ -1,6 +1,6 @@
 spring:
   config:
-    import: optional:configserver:http://http://192.168.33.10:8887
+    import: optional:configserver:http://192.168.33.10:8887
   application:
     name: ProjetMicroservice
 

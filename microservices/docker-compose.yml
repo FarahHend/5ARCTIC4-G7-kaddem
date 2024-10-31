@@ -128,7 +128,7 @@ services:
     networks:
       - microservices-net
     volumes:
-      - projetmicroservie_data:/data # Adjust this path based on your needs
+      - projetmicroservie_data:/data
     depends_on:
       - mongo-express
       - mongodb
@@ -143,7 +143,7 @@ services:
     networks:
       - microservices-net
     volumes:
-      - equipemicroservie_data:/data # Adjust this path based on your needs
+      - equipemicroservie_data:/data
     depends_on:
       - mysql
       - phpmyadmin
@@ -193,6 +193,6 @@ volumes:
   nexus_data:
   mysql_data:
   postgres_data:
-  frontend_data: # Add a volume for frontend
-  projetmicroservie_data: # Add a volume for projetmicroservie
-  equipemicroservie_data: # Add a volume for equipemicroservie
+  frontend_data:
+  projetmicroservie_data:
+  equipemicroservie_data:

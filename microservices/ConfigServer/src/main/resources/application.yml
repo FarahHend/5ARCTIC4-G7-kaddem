@@ -1,5 +1,6 @@
 server:
   port: 8887
+
 spring:
   profiles:
     active: native
@@ -10,3 +11,9 @@ spring:
       server:
         native:
           search-locations: classpath:/configurations
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, info

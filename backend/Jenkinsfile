@@ -6,6 +6,13 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Display Branch Name') {
+            steps {
+                script {
+                    echo "Current branch: ${env.BRANCH_NAME}"
+                }
+            }
+        }
         stage('Compile') {
             steps {
                 dir('backend') {
@@ -18,7 +25,7 @@ pipeline {
             steps {
                 dir('backend') {
                     withSonarQubeEnv('SonarQube-Serveur') {
-                        sh './mvnw sonar:sonar'
+                        sh "./mvnw sonar:sonar -Dsonar.branch.name=${env.BRANCH_NAME}"
                     }
                 }
             }

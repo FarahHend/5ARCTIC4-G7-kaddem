@@ -1,17 +1,9 @@
 pipeline {
     agent any
-    environment {
-        BRANCH_NAME = 'BahaBrinsi-5ARCTIC4-G7' 
-    }
     stages {
         stage('Git') {
             steps {
                 checkout scm
-            }
-        }
-        stage('Display Branch Name') {
-            steps {
-                echo "Current branch: ${env.BRANCH_NAME}"
             }
         }
         stage('Compile') {
@@ -26,7 +18,7 @@ pipeline {
             steps {
                 dir('backend') {
                     withSonarQubeEnv('SonarQube-Serveur') {
-                        sh "./mvnw sonar:sonar -Dsonar.branch.name=${env.BRANCH_NAME}"
+                        sh './mvnw sonar:sonar'
                     }
                 }
             }

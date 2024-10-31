@@ -14,11 +14,18 @@ pipeline {
                 }
             }
         }
+        stage('Test') {
+            steps {
+                dir('backend') {
+                    sh './mvnw test'
+                }
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 dir('backend') {
                     withSonarQubeEnv('SonarQube-Serveur') {
-                        sh './mvnw sonar:sonar'
+                        sh './mvnw sonar:sonar -Dsonar.java.coveragePlugin=jacoco -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml'
                     }
                 }
             }

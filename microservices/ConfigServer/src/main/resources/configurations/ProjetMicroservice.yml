@@ -12,4 +12,4 @@ spring:
 
 application:
   config:
-    equipe-url: http://http://192.168.33.10:8222/equipe
+    equipe-url: http://192.168.33.10:8222/equipe

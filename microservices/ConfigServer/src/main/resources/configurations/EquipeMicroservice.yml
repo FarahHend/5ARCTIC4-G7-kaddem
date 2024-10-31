@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://http://192.168.33.10:3306/EquipeDB
+    url: jdbc:mysql://192.168.33.10:3306/EquipeDB
     username: hend
     password: hend
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,4 +15,4 @@ spring:
 
 application:
   config:
-    projet-url: http://http://192.168.33.10:8222/projet
+    projet-url: http://192.168.33.10:8222/projet

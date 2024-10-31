@@ -130,6 +130,9 @@ services:
     volumes:
       - projetmicroservie_data:/data # Adjust this path based on your needs
     depends_on:
+      - mongo-express
+      - mongodb
+      - config-server
       - eureka
 
   equipemicroservie:
@@ -142,6 +145,9 @@ services:
     volumes:
       - equipemicroservie_data:/data # Adjust this path based on your needs
     depends_on:
+      - mysql
+      - phpmyadmin
+      - config-server
       - eureka
 
   prometheus:

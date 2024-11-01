@@ -3,7 +3,7 @@ services:
     image: mongo
     container_name: mongo_db
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - mongo_data:/data/db
     environment:
@@ -17,7 +17,7 @@ services:
     container_name: mongo_express
     restart: always
     ports:
-      - 8081:8081
+      - "8081:8081"
     volumes:
       - mongo_data:/data/db
     environment:
@@ -33,7 +33,7 @@ services:
     image: sonarqube:lts
     container_name: sonar
     ports:
-      - 9000:9000
+      - "9000:9000"
     environment:
       - SONARQUBE_JDBC_URL=jdbc:postgresql://postgres_db/sonarqube
       - SONARQUBE_JDBC_USERNAME=sonar
@@ -51,7 +51,7 @@ services:
     image: sonatype/nexus3
     container_name: nexuss
     ports:
-      - 8082:8081
+      - "8082:8081"
     volumes:
       - nexus_data:/nexus-data
     networks:
@@ -66,7 +66,7 @@ services:
       - MYSQL_USER=hend
       - MYSQL_PASSWORD=hend
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -80,7 +80,7 @@ services:
       - PMA_USER=hend
       - PMA_PASSWORD=hend
     ports:
-      - 8083:80
+      - "8083:80"
     depends_on:
       - mysql
     networks:
@@ -94,7 +94,7 @@ services:
       - POSTGRES_PASSWORD=sonar
       - POSTGRES_DB=sonarqube
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -104,7 +104,7 @@ services:
     image: frontendimage
     container_name: frontend_container
     ports:
-      - 8088:8088
+      - "8088:8088"
     networks:
       - microservices-net
     volumes:
@@ -116,19 +116,19 @@ services:
     image: steeltoeoss/eureka-server
     container_name: eureka_server
     ports:
-      - 8761:8761
+      - "8761:8761"
     networks:
       - microservices-net
 
   projetmicroservie:
-    image: projetmicroservieimage
+    image: projetmicroserviceimage
     container_name: projet_microservice_container
     ports:
-      - 8086:8086
+      - "8086:8086"
     networks:
       - microservices-net
     volumes:
-      - projetmicroservie_data:/data
+      - projetmicroservice_data:/data
     depends_on:
       - mongo-express
       - mongodb
@@ -136,14 +136,14 @@ services:
       - eureka
 
   equipemicroservie:
-    image: equipemicroservieimage
+    image: equipemicroserviceimage
     container_name: equipe_microservice_container
     ports:
-      - 8084:8084
+      - "8084:8084"
     networks:
       - microservices-net
     volumes:
-      - equipemicroservie_data:/data
+      - equipemicroservice_data:/data
     depends_on:
       - mysql
       - phpmyadmin
@@ -154,8 +154,9 @@ services:
     image: prom/prometheus
     container_name: prometheus
     ports:
-      - 9090:9090
+      - "9090:9090"
     volumes:
+      - prometheus_data:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - microservices-net
@@ -164,12 +165,14 @@ services:
     image: grafana/grafana
     container_name: grafana
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     depends_on:
       - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
     networks:
       - microservices-net
 
@@ -177,22 +180,36 @@ services:
     image: config-server
     container_name: config_server
     ports:
-      - 8887:8887
+      - "8887:8887"
     networks:
       - microservices-net
 
 networks:
   microservices-net:
-    driver: bridge
+    external: true
 
 volumes:
   mongo_data:
+    external: true
   sonarqube_data:
+    external: true
   sonarqube_extensions:
+    external: true
   sonarqube_logs:
+    external: true
   nexus_data:
+    external: true
   mysql_data:
+    external: true
   postgres_data:
+    external: true
   frontend_data:
-  projetmicroservie_data:
-  equipemicroservie_data:
+    external: true
+  projetmicroservice_data:
+    external: true
+  equipemicroservice_data:
+    external: true
+  prometheus_data:
+    external: true
+  grafana_data:
+    external: true

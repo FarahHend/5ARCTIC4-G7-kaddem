@@ -5,11 +5,16 @@ spring:
     mongodb:
       username: hend
       password: hend
-      host: 192.168.33.10
+      host: mongodb
       port: 27017
       database: ProjetDB
       authentication-database: admin
-
+eureka:
+  instance:
+    hostname: 192.168.33.10
+  client:
+    service-url:
+      defaultZone: http://192.168.33.10:8761/eureka
 application:
   config:
     equipe-url: http://192.168.33.10:8222/equipe

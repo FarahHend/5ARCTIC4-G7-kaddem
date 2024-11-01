@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "ProjetMicroservice", url = "${application.config.projet-url}", configuration = FeignConfig.class)
+@FeignClient(name = "ProjetMicroservice", url = "http://192.168.33.10:8222/projet", configuration = FeignConfig.class)
 public interface ProjetFeignClient {
 
     @GetMapping("/{idProjet}")

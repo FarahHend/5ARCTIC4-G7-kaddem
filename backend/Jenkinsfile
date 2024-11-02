@@ -42,7 +42,6 @@ pipeline {
         }
         stage('Deploy to Nexus') {
             steps {
-                dir('backend') {
                     withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
                         sh """
                             ./mvnw deploy -DskipTests=true \
@@ -50,7 +49,6 @@ pipeline {
                             -Dpassword=${NEXUS_PASSWORD}
                         """
                     }
-                }
             }
         }
     }

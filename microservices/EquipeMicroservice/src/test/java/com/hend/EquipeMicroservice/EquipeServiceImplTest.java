@@ -55,5 +55,75 @@ class EquipeServiceImplTest {
         assertEquals("Equipe not found", exception.getMessage());
     }
 
+    @Test
+    void testCalculerEfficaciteEquipe_WithMixedProjectResults() {
+        // Arrange
+        when(equipeRepository.findById(1)).thenReturn(Optional.of(equipe));
+        when(projetFeignClient.getProjetById("projet1")).thenReturn(new ProjetResponse("projet1", true , true));
+        when(projetFeignClient.getProjetById("projet2")).thenReturn(new ProjetResponse("projet2", false , false));
+
+        // Act
+        double result = equipeService.calculerEfficaciteEquipe(1);
+
+        // Assert
+        assertEquals(50.0, result, 0.01);
+    }
+
+
+    @Test
+    void testCalculerEfficaciteEquipe_AllProjectsSuccessful() {
+        // Arrange
+        when(equipeRepository.findById(1)).thenReturn(Optional.of(equipe));
+        when(projetFeignClient.getProjetById("projet1")).thenReturn(new ProjetResponse("projet1", false , false));
+        when(projetFeignClient.getProjetById("projet2")).thenReturn(new ProjetResponse("projet2", false , false));
+
+        // Act
+        double result = equipeService.calculerEfficaciteEquipe(1);
+
+        // Assert
+        assertEquals(100.0, result, 0.01);
+    }
+
+    @Test
+    void testCalculerEfficaciteEquipe_AllProjectsFailed() {
+        // Arrange
+        when(equipeRepository.findById(1)).thenReturn(Optional.of(equipe));
+        when(projetFeignClient.getProjetById("projet1")).thenReturn(new ProjetResponse("projet1", true, true));
+        when(projetFeignClient.getProjetById("projet2")).thenReturn(new ProjetResponse("projet2", true , true));
+
+        // Act
+        double result = equipeService.calculerEfficaciteEquipe(1);
+
+        // Assert
+        assertEquals(0.0, result, 0.01);
+    }
+
+    @Test
+    void testCalculerEfficaciteEquipe_SingleSuccessfulProject() {
+        // Arrange
+        when(equipeRepository.findById(1)).thenReturn(Optional.of(equipe));
+        when(projetFeignClient.getProjetById("projet1")).thenReturn(new ProjetResponse("projet1", true , true));
+        when(projetFeignClient.getProjetById("projet2")).thenReturn(new ProjetResponse("projet2", false , false));
+
+        // Act
+        double result = equipeService.calculerEfficaciteEquipe(1);
+
+        // Assert
+        assertEquals(50.0, result, 0.01);
+    }
+
+    @Test
+    void testCalculerEfficaciteEquipe_EmptyProjectList() {
+        // Arrange
+        equipe.setProjetIds(Arrays.asList());
+        when(equipeRepository.findById(1)).thenReturn(Optional.of(equipe));
+
+        // Act
+        double result = equipeService.calculerEfficaciteEquipe(1);
+
+        // Assert
+        assertEquals(0.0, result, 0.01);
+    }
+
 
 }

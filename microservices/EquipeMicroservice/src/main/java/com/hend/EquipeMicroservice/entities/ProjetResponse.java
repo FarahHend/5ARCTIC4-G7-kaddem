@@ -23,6 +23,11 @@ public class ProjetResponse {
         this.enRetard = enRetard;
     }
 
+    public ProjetResponse(String idProjet, boolean budgetDepasse, boolean enRetard) {
+        this.idProjet = idProjet;
+        this.budgetDepasse = budgetDepasse;
+        this.enRetard = enRetard;
+    }
 
 
     // Getters and Setters

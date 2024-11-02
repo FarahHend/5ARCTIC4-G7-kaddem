@@ -12,4 +12,5 @@ public interface ProjetFeignClient {
     @GetMapping("/{idProjet}")
     ProjetResponse getProjetById(@PathVariable("idProjet") String projetId);
 
+
 }

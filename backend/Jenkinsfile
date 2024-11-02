@@ -30,5 +30,19 @@ pipeline {
                 }
             }
         }
+        stage('Package') {
+            steps {
+                dir('backend') {
+                    sh './mvnw package'
+                }
+            }
+        }
+        stage('Deploy to Nexus') {
+            steps {
+                dir('backend') {
+                    sh './mvnw clean deploy'
+                }
+            }
+        }
     }
 }

@@ -7,9 +7,11 @@ import com.hend.EquipeMicroservice.services.EquipeServiceImpl;
 import com.hend.EquipeMicroservice.services.ProjetFeignClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
@@ -21,7 +23,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
-@TestPropertySource(properties = "application.config.projet-url=http://http://192.168.33.10:8222")
+@ExtendWith(MockitoExtension.class)
+@TestPropertySource(properties = "application.config.projet-url=http://192.168.33.10:8055")
 class EquipeServiceImplTest {
 
     @InjectMocks

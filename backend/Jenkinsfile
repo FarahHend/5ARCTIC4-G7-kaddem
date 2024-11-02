@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+            NEXUS_CREDENTIALS = credentials('nexus')
+        }
     stages {
         stage('Git') {
             steps {
@@ -39,10 +42,14 @@ pipeline {
         }
         stage('Deploy to Nexus') {
             steps {
-                dir('backend') {
-                    sh './mvnw clean deploy'
-                }
-            }
+                            withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
+                                sh """
+                                    mvn deploy -DskipTests=true \
+                                    -Dusername=${NEXUS_USERNAME} \
+                                    -Dpassword=${NEXUS_PASSWORD}
+                                """
+                            }
+                        }
         }
     }
 }

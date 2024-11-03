@@ -1,0 +1,26 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  spring-app:
+    image: kaddem-app:latest  # Replace with your actual Spring Boot image
+    container_name: spring-container
+    ports:
+      - "8089:8089"  # Expose your Spring Boot app's port
+    depends_on:
+      - mysql-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/kaddem
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 0000
+
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql-container
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: kaddem
+      MYSQL_USER: root
+      MYSQL_PASSWORD:

@@ -18,12 +18,12 @@
     </properties>
     <distributionManagement>
         <repository>
-            <id>repNexus</id>
+            <id>repnex</id>
             <name>Nexus Repository</name>
             <url>http://192.168.33.10:8081/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>repNexus</id>
+            <id>repnex</id>
             <name>snapshots Nexus Repository</name>
             <url>http://192.168.33.10:8081/repository/maven-snapshots/</url>
         </snapshotRepository>

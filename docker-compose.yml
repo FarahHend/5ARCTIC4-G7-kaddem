@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ayed
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
+  app-marouan:
+    depends_on:
+      - mysqldb
+    image: marayed/marouan-backend:latest
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/ayed
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    ports:
+      - "8089:8080"
+    stdin_open: true
+    tty: true
+
+  frontend:
+    depends_on:
+      - app-marouan
+    image: marayed/marouan-frontend-image:latest
+    ports:
+      - "4200:80"
+
+volumes:
+  db:

@@ -45,8 +45,8 @@ pipeline {
                 dir('backend') { // Assurez-vous que 'backend' est bien le bon répertoire
                     withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
                         sh """
-                            ./mvnw deploy -DskipTests=true \\
-                            -Dusername=${NEXUS_USERNAME} \\
+                            mvn deploy -DskipTests=true \
+                            -Dusername=${NEXUS_USERNAME} \
                             -Dpassword=${NEXUS_PASSWORD}
                         """
                     }

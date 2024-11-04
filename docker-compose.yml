@@ -18,6 +18,8 @@ services:
     image: marayed/marouan-backend:latest
     environment:
       SPRING_APPLICATION_JSON: '{
+        "server.servlet.context-path" : "/kaddem",
+        "server.port" : "8089",
         "spring.datasource.url" : "jdbc:mysql://mysqldb:3306/ayed?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
         "spring.datasource.username" : "root",
         "spring.datasource.password" : "root",
@@ -25,7 +27,7 @@ services:
         "spring.jpa.hibernate.ddl-auto" : "update"
       }'
     ports:
-      - "8089:8080"
+      - "8089:8089"
     stdin_open: true
     tty: true
 

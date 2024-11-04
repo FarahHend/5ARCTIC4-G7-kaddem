@@ -28,7 +28,7 @@ services:
   frontend:
     depends_on:
       - app-marouan
-    image: marayed/marouan-frontend-image:latest
+    image: marayed/marouan-frontend:latest
     ports:
       - "4200:80"
 

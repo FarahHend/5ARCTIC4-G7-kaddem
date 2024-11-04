@@ -6,7 +6,7 @@ services:
     ports:
       - "8089:8089"  # Port de votre application Spring
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/kaddemdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/kaddemdb
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=azerty
     depends_on:
@@ -18,4 +18,4 @@ services:
       MYSQL_ROOT_PASSWORD: azerty
       MYSQL_DATABASE: kaddemdb
     ports:
-      - "3307:3306"
+      - "3306:3306"

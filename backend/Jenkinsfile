@@ -51,11 +51,11 @@ pipeline {
             steps {
                 dir('backend') {
                     withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-                        sh '
+                        sh """
                             ./mvnw deploy -DskipTests=true \
                             -Dusername=${NEXUS_USERNAME} \
                             -Dpassword=${NEXUS_PASSWORD}
-                        '
+                        """
                     }
                 }
             }
@@ -65,7 +65,7 @@ pipeline {
             steps {
                 dir('backend') {
                     script {
-                        sh "docker build -t ${IMAGE_NAME}:latest ." // Construire l'image Docker
+                        sh "docker build -t ${IMAGE_NAME}:latest ." // Build the Docker image
                     }
                 }
             }
@@ -75,7 +75,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_credentials') {
-                        sh "docker push ${IMAGE_NAME}:latest" // Pousser l'image vers Docker Hub
+                        sh "docker push ${IMAGE_NAME}:latest" // Push the image to Docker Hub
                     }
                 }
             }

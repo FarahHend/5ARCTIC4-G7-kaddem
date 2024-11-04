@@ -22,5 +22,3 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 0000
       MYSQL_DATABASE: kaddem
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 0000

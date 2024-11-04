@@ -80,5 +80,15 @@ pipeline {
                 }
             }
         }
+        stage('Deploy with Docker Compose') {
+                    steps {
+                        dir('backend') {
+                            script {
+                                sh 'docker-compose down || true'  // Arrêter les services si déjà en cours d'exécution
+                                sh 'docker-compose up -d'        // Lancer les services en arrière-plan
+                            }
+                        }
+                    }
+                }
     }
 }

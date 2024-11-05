@@ -10,7 +10,6 @@ import tn.esprit.spring.kaddem.services.IUniversiteService;
 import java.util.List;
 import java.util.Set;
 
-@CrossOrigin(origins = "http://192.168.33.10:4200")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/universite")

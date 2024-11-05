@@ -71,6 +71,11 @@
             <artifactId>log4j-core</artifactId>
             <version>2.14.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
     </dependencies>
 
     <!-- Deploy to Nexus -->

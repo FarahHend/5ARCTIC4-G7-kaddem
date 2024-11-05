@@ -8,7 +8,7 @@ import { Projet } from '../model/Projet';
     providedIn: 'root'
 })
 export class ProjetService {
-    private baseUrl = 'http://localhost:8222/projet';
+    private baseUrl = 'http://192.168.33.10:8000/projet';
 
     constructor(private http: HttpClient) {}
 

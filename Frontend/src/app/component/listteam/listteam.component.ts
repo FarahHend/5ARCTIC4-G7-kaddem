@@ -17,9 +17,9 @@ import { EquipeService } from '../../service/equipe.service';
 })
 export class EquipeListComponent implements OnInit {
     equipes: Equipe[] = [];
-    private apiUrl = 'http://localhost:8222/equipe/retrieve-all-equipes';
-    private deleteUrl = 'http://localhost:8050/equipe/remove-equipe';
-    private updateUrl = 'http://localhost:8050/equipe/update-equipe';
+    private apiUrl = 'http://192.168.33.10:8000/equipe/retrieve-all-equipes';
+    private deleteUrl = 'http://192.168.33.10:8000/equipe/remove-equipe';
+    private updateUrl = 'http://192.168.33.10:8000/equipe/update-equipe';
 
     constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private equipeService: EquipeService) {}
 

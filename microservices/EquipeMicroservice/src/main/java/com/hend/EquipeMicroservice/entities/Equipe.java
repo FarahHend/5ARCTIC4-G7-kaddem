@@ -1,5 +1,6 @@
 package com.hend.EquipeMicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Equipe implements Serializable {
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
 
+    @JsonIgnore
     @OneToOne
     private DetailEquipe detailEquipe;
     

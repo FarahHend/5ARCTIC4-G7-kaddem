@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://192.168.33.10:8088")
 @RequestMapping("/equipe")
 public class EquipeController {
     IEquipeService equipeService;

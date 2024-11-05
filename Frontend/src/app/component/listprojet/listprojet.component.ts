@@ -15,9 +15,9 @@ import { ProjetModalComponent } from '../projet-modal/projet-modal.component'; /
 })
 export class ListprojetComponent implements OnInit {
   projets: Projet[] = [];
-  private apiUrl = 'http://localhost:8222/projet';
-  private deleteUrl = 'http://localhost:8055/projet';
-  private updateUrl = 'http://localhost:8055/projet';
+  private apiUrl = 'http://192.168.33.10:8000/projet';
+  private deleteUrl = 'http://192.168.33.10:8000/projet';
+  private updateUrl = 'http://192.168.33.10:8000/projet';
 
   constructor(private http: HttpClient, private router: Router, private dialog: MatDialog) {}
 

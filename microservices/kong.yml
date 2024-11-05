@@ -1,0 +1,64 @@
+_format_version: "1.1"
+
+services:
+  - name: equipe_service
+    url: http://192.168.33.10:8084
+    routes:
+      - name: equipe_route_retrieve_all
+        paths:
+          - /equipe/retrieve-all-equipes
+        strip_path: false
+        protocols:
+          - http
+          - https
+
+      - name: equipe_route_retrieve_one
+        paths:
+          - /equipe/retrieve-equipe
+        strip_path: false
+        protocols:
+          - http
+          - https
+
+      - name: equipe_route_add
+        paths:
+          - /equipe/add-equipe
+        strip_path: false
+        protocols:
+          - http
+          - https
+
+      - name: equipe_route_remove
+        paths:
+          - /equipe/remove-equipe
+        strip_path: false
+        protocols:
+          - http
+          - https
+
+      - name: equipe_route_update
+        paths:
+          - /equipe/update-equipe
+        strip_path: false
+        protocols:
+          - http
+          - https
+
+      - name: equipe_route_efficacite
+        paths:
+          - /equipe/efficacite
+        strip_path: false
+        protocols:
+          - http
+          - https
+
+  - name: projet_service
+    url: http://192.168.33.10:8086
+    routes:
+      - name: projet_route
+        paths:
+          - /projet
+        strip_path: false
+        protocols:
+          - http
+          - https

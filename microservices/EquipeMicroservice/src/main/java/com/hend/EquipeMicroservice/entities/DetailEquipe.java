@@ -1,5 +1,6 @@
 package com.hend.EquipeMicroservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -12,6 +13,8 @@ public class DetailEquipe implements Serializable{
     private Integer idDetailEquipe;
     private Integer salle;
     private String thematique;
+
+    @JsonIgnore
     @OneToOne(mappedBy="detailEquipe")
     private Equipe equipe;
     public DetailEquipe() {

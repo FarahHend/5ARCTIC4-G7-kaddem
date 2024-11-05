@@ -104,13 +104,11 @@ services:
     image: frontendimage
     container_name: frontend_container
     ports:
-      - "8088:8088"
+      - "8088:80"
     networks:
       - microservices-net
     volumes:
       - frontend_data:/app/data
-    depends_on:
-      - eureka
 
   eureka:
     image: steeltoeoss/eureka-server
@@ -129,26 +127,32 @@ services:
       - microservices-net
     volumes:
       - projetmicroservice_data:/data
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=mongodb
     depends_on:
       - mongo-express
       - mongodb
-      - config-server
-      - eureka
+      - api_gateway
 
   equipemicroservie:
     image: equipemicroserviceimage
     container_name: equipe_microservice_container
     ports:
       - "8084:8084"
-    networks:
-      - microservices-net
     volumes:
       - equipemicroservice_data:/data
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_db:3306/EquipeDB
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka_server:8761/eureka/
     depends_on:
       - mysql
-      - phpmyadmin
-      - config-server
       - eureka
+      - phpmyadmin
+      - api_gateway
+    networks:
+      - microservices-net
 
   prometheus:
     image: prom/prometheus
@@ -181,6 +185,39 @@ services:
     container_name: config_server
     ports:
       - "8887:8887"
+    networks:
+      - microservices-net
+
+  api_gateway:
+    image: kong:latest
+    container_name: api_gateway
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+    environment:
+      - KONG_DATABASE=off
+      - KONG_PROXY_ACCESS_LOG=/dev/stdout
+      - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+      - KONG_PROXY_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+      - KONG_DECLARATIVE_CONFIG=/kong/kong.yml
+    volumes:
+      - ./kong.yml:/kong/kong.yml:ro
+    networks:
+      - microservices-net
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - "8089:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
     networks:
       - microservices-net
 

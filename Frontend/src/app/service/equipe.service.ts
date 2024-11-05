@@ -1,5 +1,3 @@
-// src/app/services/equipe.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -9,7 +7,7 @@ import { Equipe } from '../model/Equipe';
   providedIn: 'root'
 })
 export class EquipeService {
-  private baseUrl = 'http://localhost:8222/equipe';
+  private baseUrl = 'http://192.168.33.10:8000/equipe';
 
   constructor(private http: HttpClient) {}
 

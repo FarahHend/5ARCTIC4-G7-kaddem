@@ -1,15 +1,39 @@
 spring:
-  config:
-    import: "optional:configserver:http://192.168.33.10:8887"
   application:
     name: EquipeMicroservice
   profiles:
-    active: default
+    active: ${SPRING_PROFILES_ACTIVE:default}
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql_db:3306/EquipeDB}
+    username: hend
+    password: hend
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 
 logging:
   file:
-    name: "C:/Users/hend8/Desktop/kaddem/microservices/EquipeMicroservice/test-logs/test-log.log"
+    name: "/home/vagrant/microservices/EquipeMicroservice/logs/test-log.log"
   level:
     root: INFO
     org.springframework: WARN
     com.zaxxer.hikari: WARN
+
+server:
+  port: 8084
+  address: 0.0.0.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka_server:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+application:
+  config:
+    equipe-url: http://192.168.33.10:8000/projet

@@ -15,7 +15,7 @@ import { Projet, ProjectStatus } from '../../model/Projet';
 export class AddprojetComponent implements OnInit {
   projetForm!: FormGroup;
   projectStatuses = Object.values(ProjectStatus);  
-  private apiUrl = 'http://localhost:8055/projet'; 
+  private apiUrl = 'http://192.168.33.10:8000/projet'; 
 
   constructor(
     private fb: FormBuilder,

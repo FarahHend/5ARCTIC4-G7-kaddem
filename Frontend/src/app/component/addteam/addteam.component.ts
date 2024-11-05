@@ -34,7 +34,7 @@ export class AddteamComponent {
   onSubmit() {
     if (this.teamForm.valid) {
       const formValues = this.teamForm.value;
-      this.http.post('http://localhost:8050/equipe/add-equipe', formValues) 
+      this.http.post('http://192.168.33.10:8000/equipe/add-equipe', formValues) 
         .subscribe({
           next: (response) => {
             console.log('Equipe added successfully:', response);
